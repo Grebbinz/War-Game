@@ -6,6 +6,12 @@ import time
 running = True
 
 
+class game:
+    def __init__(self):
+        self.human = human()
+        self.computer = computer()
+
+
 def start():
     print('=' * 60)
     print('rules: https://bicyclecards.com/how-to-play/war/')
