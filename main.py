@@ -3,54 +3,33 @@
 import random
 import time
 
-running = True
-
 
 class game:
     def __init__(self):
         self.human = human()
         self.computer = computer()
+        self.running = True
 
-    def create(self):
         print('=' * 60)
         print('rules: https://bicyclecards.com/how-to-play/war/')
         print('The cards are numbered 1 - 13!')
         print('=' * 60, )
 
-        running = True
-
-        while running:
+        while self.running:
             self.computer.draw()
             self.human.draw()
+
+            self.determine_winner()
 
     def determine_winner(self):
         if self.computer.card == self.human.card:
             return 0
         elif self.computer.card > self.human.card:
-            return self.computer.card
+            self.computer.win()
         elif self.computer.card < self.human.card:
-            return self.human.card
+            self.human.win()
         else:
             return -1
-
-
-def start():
-    print('=' * 60)
-    print('rules: https://bicyclecards.com/how-to-play/war/')
-    print('The cards are numbered 1 - 13!')
-    print('=' * 60,)
-
-
-# Returns the value of the highest card, 0 if they are equal
-def determine_winner(card1, card2):
-    if card1 == card2:
-        return 0
-    elif card1 > card2:
-        return card1
-    elif card1 < card2:
-        return card2
-    else:
-        return -1
 
 
 def run_check():
@@ -121,26 +100,4 @@ class computer(player):
         self.card = card
 
 
-# Start of program
-start()
-
-computer = computer()
-human = human()
-
-# Game loop
-while running:
-    computer.draw()
-    human.draw()
-
-    print('You drew', human.card, "the computer drew", computer.card)
-    time.sleep(1)
-
-    if determine_winner(computer.card, human.card) == 0:
-        print('TIE')
-    elif determine_winner(computer.card, human.card) == human.card:
-        print('HUMAN VICTORY')
-    elif determine_winner(computer.card, human.card) == computer.card:
-        print('COMPUTER VICTORY')
-    time.sleep(1)
-
-print('Goodbye!')
+game = game()
