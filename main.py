@@ -11,6 +11,28 @@ class game:
         self.human = human()
         self.computer = computer()
 
+    def create(self):
+        print('=' * 60)
+        print('rules: https://bicyclecards.com/how-to-play/war/')
+        print('The cards are numbered 1 - 13!')
+        print('=' * 60, )
+
+        running = True
+
+        while running:
+            self.computer.draw()
+            self.human.draw()
+
+    def determine_winner(self):
+        if self.computer.card == self.human.card:
+            return 0
+        elif self.computer.card > self.human.card:
+            return self.computer.card
+        elif self.computer.card < self.human.card:
+            return self.human.card
+        else:
+            return -1
+
 
 def start():
     print('=' * 60)
