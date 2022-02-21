@@ -16,34 +16,28 @@ class game:
         print('=' * 60, )
 
         while self.running:
+
             self.computer.draw()
             self.human.draw()
+            print('Computer Drew:', self.computer.card)
+            print('Human Drew:', self.human.card)
 
             self.determine_winner()
 
+            # temporary
+            print(self.human.score, self.computer.score)
+
     def determine_winner(self):
         if self.computer.card == self.human.card:
-            return 0
+            print('Tie')
         elif self.computer.card > self.human.card:
             self.computer.win()
+            print('Computer won')
         elif self.computer.card < self.human.card:
             self.human.win()
+            print('Human won')
         else:
-            return -1
-
-
-def run_check():
-    decision = ''
-    while decision == '':
-        print('Draw? y/n')
-        decision = input()
-
-        if decision == 'y':
-            return True
-        elif decision == 'n':
-            return False
-        else:
-            decision = ''
+            print('error')
 
 
 class player:
