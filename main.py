@@ -69,7 +69,7 @@ class human(player):
 
         # Makes sure you actually pick a card and not like a letter or something
         while pick not in acceptable_input:
-            print('Pick one of your cards bozo!')
+            print('Pick one of your cards bozo!\n')
             print('Pick a card numbered between 1 and', len(self.hand))
 
             pick = input()
