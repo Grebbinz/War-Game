@@ -8,6 +8,9 @@ class game:
     def __init__(self):
         self.human = human()
         self.computer = computer()
+        self.running = False
+
+    def run(self):
         self.running = True
 
         print('=' * 60)
@@ -17,27 +20,40 @@ class game:
 
         while self.running:
 
-            self.computer.draw()
             self.human.draw()
-            print('Computer Drew:', self.computer.card)
-            print('Human Drew:', self.human.card)
+            self.computer.draw()
 
             self.determine_winner()
 
             # temporary
             print(self.human.score, self.computer.score)
+            
+    def stop(self):
+        self.running = False
 
     def determine_winner(self):
         if self.computer.card == self.human.card:
-            print('Tie')
+            print('tie')
+            self.tie()
         elif self.computer.card > self.human.card:
-            self.computer.win()
             print('Computer won')
+            self.computer.win()
         elif self.computer.card < self.human.card:
-            self.human.win()
             print('Human won')
+            self.human.win()
         else:
             print('error')
+
+    def tie(self):
+        self.human.draw()
+        self.human.draw()
+
+        self.computer.draw()
+        self.computer.draw()
+
+        self.determine_winner()
+        self.determine_winner()
+        self.determine_winner()
 
 
 class player:
@@ -80,6 +96,7 @@ class human(player):
 
         # sets self.card equal to the card drawn
         self.card = card
+        print('Human drew:', self.card)
 
 
 class computer(player):
@@ -90,6 +107,9 @@ class computer(player):
 
         card = self.hand.pop(random.randint(0, len(self.hand) - 1))
         self.card = card
+        print('Computer drew:', self.card)
 
 
 game = game()
+
+game.run()
