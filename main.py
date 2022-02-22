@@ -58,7 +58,6 @@ class human(player):
 
         if len(self.hand) == 0:
             print('Drawing hand for human...')
-            time.sleep(3)
             self.gen_hand()
 
         print('\nPick a card numbered between 1 and', len(self.hand))
@@ -87,7 +86,6 @@ class computer(player):
     def draw(self):
         if len(self.hand) == 0:
             print('Drawing hand for computer...')
-            time.sleep(3)
             self.gen_hand()
 
         card = self.hand.pop(random.randint(0, len(self.hand) - 1))
